@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lowen.dao.UserDao">
+	<insert id="insert" parameterType="com.lowen.entity.UserInfo">
+		INSERT INTO user(id,name,age) VALUES(#{id},#{name},#{age})
+	</insert>
+	<update id="updateById" parameterType="com.lowen.entity.UserInfo">
+		UPDATE user SET 
+			name = #{name},
+			age = #{age}
+		WHERE id = #{id}
+	</update>
+	<select id="queryById" resultType="com.lowen.entity.UserInfo" parameterType="com.lowen.entity.UserInfo">
+		SELECT * FROM user t WHERE t.id = #{id}
+	</select>
+	
+	<select id="queryByName" resultType="com.lowen.entity.UserInfo" parameterType="com.lowen.entity.UserInfo">
+		SELECT * FROM user t WHERE t.name LIKE CONCAT('%',#{name},'%')
+	</select>
+</mapper>
